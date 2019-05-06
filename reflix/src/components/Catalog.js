@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Movie from "./Movie";
-// import { Link } from "react-router-dom";
 
 class Catalog extends Component {
 
@@ -9,7 +8,6 @@ class Catalog extends Component {
   }
 
   render() {
-    // let movieName = this.props.match.params.name;
     let movies = this.props.state.movies
 
     let searchInput = this.props.state.searchInput.toLowerCase()
@@ -32,7 +30,7 @@ class Catalog extends Component {
 
           <h2>Catalog:</h2>
           <div className="movies-container">
-          {movies.filter(movie => movie.title.toLowerCase().includes(searchInput)).map(movie => <Movie movie={movie} isRented={this.props.isRented} />)}
+            {movies.filter(movie => movie.title.toLowerCase().includes(searchInput)).map(movie => <Movie movie={movie} isRented={this.props.isRented} />)}
           </div>
 
         </div>

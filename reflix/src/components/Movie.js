@@ -19,7 +19,6 @@ class Movie extends Component {
         {movie.isRented ?
           <i className="fas fa-minus-circle" onClick={this.isRented}></i> :
           <i className="fas fa-plus-circle" onClick={this.isRented}></i>}
-      {/* <MovieDetail key={movie.id} movie={this.props.movie}/> */}
       </div>
           </Link>
 
