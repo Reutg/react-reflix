@@ -61,16 +61,46 @@ class App extends Component {
             "Basically the same as the original, except now Hermi-- Emma Wattson plays Belle, fittingly so some would say, given how actively progressive she is regarding women's rights. Rumor has it that in the bonus scenes she whips out a wand and turns Gaston into a toad, but in order to watch those scenes you need to recite a certain incantation."
         }
       ],
-      budget: 100
+      budget: 10,
+      searchInput: ""
     }
+  }
+
+  updateBudget(isRented, budget) {
+    budget += isRented ? 3 : -3
+
+    return budget
   }
 
   isRented = (id) => {
     let movies = [...this.state.movies]
-    let isMovieRented = movies[id].isRented
-    isMovieRented ? movies[id].isRented = false : movies[id].isRented = true
-  
-    this.setState({ movies })
+    let budget = this.state.budget
+    const { isRented } = movies[id]
+    if (!isRented && this.isInsufficientFunds(budget)) {
+      return
+    }
+
+    movies[id].isRented = !isRented
+    this.setState({
+      movies,
+      budget: this.updateBudget(isRented, budget)
+    })
+
+  }
+
+  isInsufficientFunds(budget) {
+    if (budget-3 <= 0){
+      alert("You don't have enough funds to buy this movie. Return a movie and try again.")
+      return true
+    }
+    return false
+
+  }
+
+  handleSearch = (event) => {
+    let searchValue = event.target.value
+    let inputName = event.target.name
+    this.setState({ [inputName]: searchValue })
   }
 
   render() {
@@ -86,7 +116,7 @@ class App extends Component {
           </div>
 
           <Route exact path="/" component={Landing} />
-          <Route exact path="/catalog" render={({ match }) => <Catalog match={match} state={this.state} isRented={this.isRented}/>} />
+          <Route exact path="/catalog" render={({ match }) => <Catalog match={match} state={this.state} isRented={this.isRented} handleSearch={this.handleSearch} />} />
           <Route exact path="/catalog/:id" render={({ match }) => <MovieDetail match={match} state={this.state} />} />
 
         </div>
