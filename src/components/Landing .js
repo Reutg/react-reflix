@@ -21,7 +21,7 @@ class Landing extends Component {
                 <div className="users">
 
                     {this.state.users.map(user =>
-                        <Link to={`/catalog/main/${user.name}`}>
+                        <Link key={user.name} to={`/catalog/main/${user.name}`}>
                             <div className="box" style={{ backgroundColor: user.color }}>
                                 <span className="user-name">{user.name}</span>
                             </div></Link>)}
