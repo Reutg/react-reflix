@@ -14,7 +14,7 @@ class Movie extends Component {
     let movie = this.props.movie
 
     return (
-        <Link to={`/catalog/${movie.id}`}> 
+        <Link to={`/catalog/movie/${movie.id}`}> 
       <div className="movie" id={movie.id} style={{ backgroundImage: `url(${movie.img})` }}>
         {movie.isRented ?
           <i className="fas fa-minus-circle" onClick={this.isRented}></i> :

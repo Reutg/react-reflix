@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component , Fragment } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import Landing from './components/Landing ';
@@ -68,7 +68,6 @@ class App extends Component {
 
   updateBudget(isRented, budget) {
     budget += isRented ? 3 : -3
-
     return budget
   }
 
@@ -108,16 +107,17 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="nav-bar">
-            <span className="links">
-              <Link to="/">Home</Link>
-              <Link to="/catalog">Catalog</Link>
-            </span>
             <span className="logo">REFLIX</span>
+            <Fragment>
+              <span><Link to="/">Home</Link></span>
+              <span><Link to="/catalog">Catalog</Link></span>
+            </Fragment>
           </div>
 
           <Route exact path="/" component={Landing} />
+          <Route exact path="/catalog/main/:user" render={({ match }) => <Catalog match={match} state={this.state} isRented={this.isRented} handleSearch={this.handleSearch} />} />
           <Route exact path="/catalog" render={({ match }) => <Catalog match={match} state={this.state} isRented={this.isRented} handleSearch={this.handleSearch} />} />
-          <Route exact path="/catalog/:id" render={({ match }) => <MovieDetail match={match} state={this.state} />} />
+          <Route exact path="/catalog/movie/:id" render={({ match }) => <MovieDetail match={match} state={this.state} />} />
 
         </div>
       </Router>

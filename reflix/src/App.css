@@ -37,10 +37,10 @@
 }
 
 .nav-bar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  display: flex;
   height: 60px;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .links {
@@ -91,11 +91,6 @@ a {
   justify-content: center;
 }
 
-.user-name {
-  font-size: 30px;
-  font-weight: bold;
-  color: #353333;
-}
 
 .users a {
   text-decoration: none;
@@ -109,19 +104,27 @@ input {
   background-color: #080808;
   padding-left: 10px;
   height: 40px;
-  width: 60%;
+  width: 100%;
   color: #d6d1d1;
   border-radius: 10px;
   outline: none;
-
 }
 
-.budget{
+.search-container .hello-user, .budget {
   color: #d6d1d1;
-
-  width: 40%;
   padding-right: 10px; 
   font-size: 20px;
+  margin: 20px;
+}
+
+.search-container div {
+  width: 30%;
+}
+
+.user-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #353333;
 }
 
 .catalog h2 {
@@ -152,8 +155,9 @@ input {
 .search-container{
   display: flex;
   align-items: center;
-  margin-top: 80px;
-  margin-left: 150px;
+  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
 }
 
 .movie i{

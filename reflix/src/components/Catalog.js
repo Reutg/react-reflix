@@ -11,11 +11,20 @@ class Catalog extends Component {
     let movies = this.props.state.movies
 
     let searchInput = this.props.state.searchInput.toLowerCase()
+
+    console.log(this.props.match.params.user)
+    const userName = this.props.match.params.user
+    
     return (
       <div className="catalog">
         <div className="search-container">
+          <div>
           <input name="searchInput" type="text" placeholder="Search..." value={this.props.state.searchInput} onChange={this.handleSearch} />
+          </div>
+          <div>
           <span className="budget">Budget: {this.props.state.budget} $</span>
+              {userName ? <span className="hello-user">User: {userName}</span> : null }
+          </div>
         </div>
         <div className="movies">
           {movies.some(movie => movie.isRented) ?
@@ -30,7 +39,7 @@ class Catalog extends Component {
 
           <h2>Catalog:</h2>
           <div className="movies-container">
-            {movies.filter(movie => movie.title.toLowerCase().includes(searchInput)).map(movie => <Movie movie={movie} isRented={this.props.isRented} />)}
+            {movies.filter(movie => movie.title.toLowerCase().includes(searchInput)).map(movie => <Movie key={movie.id} movie={movie} isRented={this.props.isRented} />)}
           </div>
 
         </div>
